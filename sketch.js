@@ -223,7 +223,7 @@ async function getBackgroundImg(){
       bg = "day.jpeg";
   }
   else{
-    bg="night.jpeg"
+    bg= "night.jpeg"
   }
 
   backgroundImg = loadImage(bg);
