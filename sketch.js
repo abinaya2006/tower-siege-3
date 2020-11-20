@@ -10,7 +10,7 @@ var backgroundImg
 
 function preload()
 {
- 
+  getBackgroundImg();
 }
 
 function setup() {
@@ -80,7 +80,8 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background("lightblue")
+  if(backgroundImg){
+  background(backgroundImg);}
 
 
    stand1.display() 
@@ -211,3 +212,21 @@ function keyPressed() {
 }
 
 
+async function getBackgroundImg(){
+  var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON = await response.json();
+
+  var datetime = responseJSON.datetime;
+  var hour = datetime.slice(11,13);
+  
+  if(hour>=0600 && hour<=1700){
+      bg = "day.jpeg";
+  }
+  else{
+    bg="night.jpeg"
+  }
+
+  backgroundImg = loadImage(bg);
+  console.log(backgroundImg);
+}
+ 
